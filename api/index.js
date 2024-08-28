@@ -1,11 +1,15 @@
 const express = require('express');
 const app = express();
+const cors = require('cors'); // Import the cors package
+
 // const quotes = require('motivational-quotes');
 const quotes = require('./quotes.json')
 const { Redis } = require('@upstash/redis');
 
 // inject .env
 require('dotenv').config();
+// Use CORS middleware
+app.use(cors());
 
 const redis = new Redis({
     url: process.env.UPSTASH_REDIS_REST_URL,
